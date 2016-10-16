@@ -43,8 +43,6 @@ public class MD5Encrypt {
 		}
 	}
 
-	
-
 	public static String md516(String input) throws Exception {
 		return code(input, 16);
 	}
