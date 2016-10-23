@@ -1,4 +1,4 @@
-package com.rom.util;
+package com.rom.util.httpclient;
 
 import java.io.File;  
 import java.io.IOException;
@@ -43,7 +43,7 @@ public class HttpClient4_4 {
 		
 		httpGet.setHeader("apikey","305c5324ee9931804d4249815bcea961");
 		
-		httpGet.setConfig(config);
+		//httpGet.setConfig(config);
 		
 		CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(null).build();//设置进去
 		
