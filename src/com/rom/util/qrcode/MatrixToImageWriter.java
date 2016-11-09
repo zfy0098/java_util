@@ -18,6 +18,7 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
 
 public class MatrixToImageWriter {
 	private static final int BLACK = 0xFF000000;
@@ -32,10 +33,6 @@ public class MatrixToImageWriter {
 	// LOGO高度
 	private static final int HEIGHT = 60;
 	
-	
-	private MatrixToImageWriter() {
-	}
-
 	public static BufferedImage toBufferedImage(BitMatrix matrix , String imgPath , boolean needCompress) throws Exception {
 		int width = matrix.getWidth();
 		int height = matrix.getHeight();
@@ -49,10 +46,10 @@ public class MatrixToImageWriter {
 		return image;
 	}
 
-	public static void writeToFile(BitMatrix matrix, File outputFile , String imgpath  , boolean flag)throws Exception {
-		BufferedImage image = toBufferedImage(matrix , imgpath , flag);
+	public static void writeToFile(BitMatrix matrix, File outputFile , String imgpath  , boolean needCompress)throws Exception {
+		BufferedImage image = toBufferedImage(matrix , imgpath , needCompress);
 		
-		flag = ImageIO.write(image, format, outputFile);
+		boolean flag = ImageIO.write(image, format, outputFile);
 		if (flag) {
 			throw new IOException("Could not write an image of format " + format + " to " + outputFile);
 		}
@@ -66,8 +63,7 @@ public class MatrixToImageWriter {
 //	}
 
 	
-	private static void insertImage(BufferedImage source, String imgPath,
-			boolean needCompress) throws Exception {
+	private static void insertImage(BufferedImage source, String imgPath,boolean needCompress) throws Exception {
 		File file = new File(imgPath);
 		if (!file.exists()) {
 			System.err.println("" + imgPath + "   该文件不存在！");
@@ -83,10 +79,8 @@ public class MatrixToImageWriter {
 			if (height > HEIGHT) {
 				height = HEIGHT;
 			}
-			Image image = src.getScaledInstance(width, height,
-					Image.SCALE_SMOOTH);
-			BufferedImage tag = new BufferedImage(width, height,
-					BufferedImage.TYPE_INT_RGB);
+			Image image = src.getScaledInstance(width, height,Image.SCALE_SMOOTH);
+			BufferedImage tag = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			Graphics g = tag.getGraphics();
 			g.drawImage(image, 0, 0, null); // 绘制缩小后的图
 			g.dispose();
@@ -109,28 +103,35 @@ public class MatrixToImageWriter {
 	 * @param content   要生成的二维码内容
 	 * @param imgpath   要插入的图片路径
 	 * @param outpath   二维码生成后输出路径
-	 * @param flag      是否插入图片
+	 * @param flag      logo 是否压缩
 	 * @throws Exception  
 	 */
-	public static void encode(String content , File outputFile,  String imgpath  , boolean flag) 
-			throws Exception{ 
+	public static void encode(String content , File outputFile,  String imgpath  , boolean needCompress) 
+			 { 
 		Hashtable<EncodeHintType, String> hints = new Hashtable<EncodeHintType, String>();
 		hints.put(EncodeHintType.CHARACTER_SET, "utf-8"); // 内容所使用字符集编码
 
-		BitMatrix bitMatrix = new MultiFormatWriter().encode(content,BarcodeFormat.QR_CODE, QRCODE_SIZE, QRCODE_SIZE, hints);
-		
-		MatrixToImageWriter.writeToFile(bitMatrix, outputFile ,imgpath , flag );
+		BitMatrix bitMatrix;
+		try {
+			bitMatrix = new MultiFormatWriter().encode(content,BarcodeFormat.QR_CODE, QRCODE_SIZE, QRCODE_SIZE, hints);
+			MatrixToImageWriter.writeToFile(bitMatrix, outputFile ,imgpath , needCompress);
+		} catch (WriterException e) {
+			
+			e.printStackTrace();
+		} catch (Exception e) { 
+			
+			e.printStackTrace();
+		}
 	}
 	
 	
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args)  {
 		String text = "http://318.zhoufy.com/"; // 二维码内容
 
 		// 生成二维码
 		File outputFile = new File("d:" + File.separator + "1111new." + format);
 		
 		MatrixToImageWriter.encode(text, outputFile, "", true);
-		
 		
 	}
 }
