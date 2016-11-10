@@ -50,7 +50,7 @@ public class MatrixToImageWriter {
 		BufferedImage image = toBufferedImage(matrix , imgpath , needCompress);
 		
 		boolean flag = ImageIO.write(image, format, outputFile);
-		if (flag) {
+		if (!flag) {
 			throw new IOException("Could not write an image of format " + format + " to " + outputFile);
 		}
 	}
