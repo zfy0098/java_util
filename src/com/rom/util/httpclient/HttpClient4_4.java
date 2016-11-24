@@ -143,6 +143,77 @@ public class HttpClient4_4 {
 	
 	
 	
+	public String post(String url, Map<String, Object> params, String paramtype) {
+		// 20161117104841010712
+
+		RequestConfig config = RequestConfig.custom()
+				.setConnectionRequestTimeout(400000)
+				.setConnectTimeout(400000)
+				.setSocketTimeout(400000).build();
+
+		HttpPost httppost = new HttpPost(url);
+
+		CloseableHttpClient httpClient = HttpClients.custom()
+				.setDefaultRequestConfig(config).build();// 设置进去
+		
+		if(params!=null){
+			
+			System.out.println(params.toString());
+			
+			if (paramtype != null && paramtype.equals("1")) {
+				// key value 形式
+				List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+				for (Map.Entry<String, Object> entry : params.entrySet()) {
+
+					formparams.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
+				}
+				try {
+					UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(
+							formparams, "UTF-8");
+					httppost.setEntity(uefEntity);
+				} catch (UnsupportedEncodingException e) {
+					System.out.println(e.getMessage());
+					return "";
+				}
+			} else {
+				
+				StringEntity rsqentity = new StringEntity(JSONObject.fromObject(params).toString(), "utf-8");
+				rsqentity.setContentEncoding("UTF-8");
+				rsqentity.setContentType("application/json");
+				httppost.setEntity(rsqentity);
+			}
+		}
+		
+		try {
+
+			HttpResponse rsp = httpClient.execute(httppost);
+			if (rsp != null) {
+				HttpEntity entity = rsp.getEntity();
+				InputStream in = entity.getContent();
+
+				String temp;
+				BufferedReader data = new BufferedReader(new InputStreamReader(in, "utf-8"));
+				StringBuffer result = new StringBuffer();
+				while ((temp = data.readLine()) != null) {
+					result.append(temp);
+					temp = null;
+				}
+				System.out.println("content:" + result.toString());
+				return result.toString();
+			}
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
 	  public void upload() {  
 
 	        CloseableHttpClient httpclient = HttpClients.createDefault();  
