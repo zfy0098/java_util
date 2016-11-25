@@ -81,13 +81,13 @@ public class TecrwinService {
 		String url = "";
 		Map<String,String> map = new TreeMap<>();
 		map.put("pmsBankNo", "102100000021"); //必填，12位联行号
-		map.put("certNo", "230828199110140930");//必填，证件号
-		map.put("mobile", "13159949876"); // 必填，结算卡绑定的11位手机号码
+		map.put("certNo", "");//必填，证件号
+		map.put("mobile", ""); // 必填，结算卡绑定的11位手机号码
 		map.put("password", "admin"); //必填，商户密码
-		map.put("cardNo", "6212260200069864706"); //必填，银行卡号
+		map.put("cardNo", ""); //必填，银行卡号
 		map.put("orgId", "000005"); //必填，6为平台机构号
-		map.put("realName", "周芳禹"); //必填，结算卡对应的真实姓名
-		map.put("account", "13159949876"); // 必填，11位手机号
+		map.put("realName", ""); //必填，结算卡对应的真实姓名
+		map.put("account", ""); // 必填，11位手机号
 		map.put("mchntName", "测试商户"); //必填，商户名称
 		
 		String result = post(url,sendStr(map),null);
