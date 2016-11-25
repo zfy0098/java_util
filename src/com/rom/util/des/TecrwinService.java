@@ -45,21 +45,19 @@ public class TecrwinService {
 	public static final String KEY_ALGORTHM = "RSA";//
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
 
-	public static final String PUBLIC_KEY = "PUBLIC_KEY";// 公钥
-	public static final String PRIVATE_KEY = "PRIVATE_KEY";
+	public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApZVmx6x8Q3rdj6WP0T9xB+1OHPjdGKM7F/0+N4Xax+C7jOE/CvmlJQhqan0QMWXZR42l22cnDwP2UJevWBqFgws3NHW/2XJiDwkdlRoQ78TkJsnEKAkcevWfZQSM2387oGDoB8eQ8gpfaTt7HiqRk3F5fWh9c3pteosyr5+L4x23gYQ9Db867PEavGVHsf64fhKSbeK7gGJtoIgtR/uYOwT/Pp3WfEv2bWmyMuKqaXuGJNLawYEJYJFrceWf8J2uAHqinI04PStQwiaZprUmvbck/fmYLEw2sJh7exLgBU+1V2I6eQHS6k1sWaGBBOa96+0SCPNG9cz3bdkCT1CaPwIDAQAB";// 公钥
+	public static final String PRIVATE_KEY = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCllWbHrHxDet2PpY/RP3EH7U4c+N0YozsX/T43hdrH4LuM4T8K+aUlCGpqfRAxZdlHjaXbZycPA/ZQl69YGoWDCzc0db/ZcmIPCR2VGhDvxOQmycQoCRx69Z9lBIzbfzugYOgHx5DyCl9pO3seKpGTcXl9aH1zem16izKvn4vjHbeBhD0Nvzrs8Rq8ZUex/rh+EpJt4ruAYm2giC1H+5g7BP8+ndZ8S/ZtabIy4qppe4Yk0trBgQlgkWtx5Z/wna4AeqKcjTg9K1DCJpmmtSa9tyT9+ZgsTDawmHt7EuAFT7VXYjp5AdLqTWxZoYEE5r3r7RII80b1zPdt2QJPUJo/AgMBAAECggEBAJoE/jV9G5kpEC4tsjjQ6jKVabNJSV9BdhY6WUUMHRUO1WWVny52SEbKLTIgYo+QTSthdoU+zfYJmXQdo9wvz0C1jgQeAvYgj1WtBPdL57UfT5lE1FDpKLS3BCzSrrL9BlmHykxyNUDupREdYsgMkJy1UGx2ZTqlBnCWSe9SWKxH2OuUOg6qn4by8gkcKO4kQP3iNfXwlF9HeBO+PrcWLxtgd3HQ2IscMdhGluKW3yYjyou6hHlAyPxExVJEdgq2g70XPsFdITQgN245GGq823zV80ZE8Ess/PP8Uaur72C18IEJAVT1Xxozu+eWBykNWX8ctoEWdT7F373PMrEe9wECgYEA0oWlSJSwrSHOA0B2DEcq+BhHTmX6vggT4MpNKWg3WRrw5xjZJfFFjdwOJiWt/YjoevGCedNQcHe63AtzWZeGNI2SQsMxbYV4otG8e1oj0TOhSwS/ZjayMvH/pYEKG4fGbEpu5XMSKh/7K8vwukkwr0uXiBur3xFNgNXuaWo+GrsCgYEAyVqOTSdVC6MDaCFvW6BBnQu+an9YbPEAG02ae+xPk3G31BKmrbztsdrloRx3uaf8mVAM/A9cQy93RpokkQBYlu5K5Q3JCN1RvZnvzT/7EUyZWE9D6Q5W7FuVuKXJOZ6SfEnadhcKuHKf1TNxsEuMqAoihErBVP1hGVDmOkmmsE0CgYBB9ETX/F1toE2ejy9soU9A8rpEQYbQyk8P+dE6y7+rVtlqTUqarIAR9YMpSFy+NYpAGjG6YQ2ubpRII/47b1FIXaIY8HYnzc0BlZvrOU5HWFmL2yzrpO8nLtHc1BSKk3sCqj8b+3URZXuXOQluE0gBYzlSFvk9pXoWhu9uby6NyQKBgDrzEyRNdp2gjRfIaiTGJ0+GJ6pgPBAxApn7v1W2mpmNOoeRKlFFNcXTU1U202p8Xvy3rgWBrb5RwDbgXAJDuqv9ednTjl7VBOBgmA9cQvIOnfp3wmcR9qreKVhU2TPQVAylRps6Jb5YeKjfldJKXBS6Wt6mUDHEuM/DmpPIClAlAoGBAJkbLj9G/Au4JbWZogbF9DIHKGCYHVDsHQI6ppx7tGxb3RU9RynchtOQiveYJdBuRgeNy3lqmkCSCJu9L1nV1uZXaFm7GJtPKRuJFhsZ+r9wqU6LxzwfWN0U/yzHUohpCKWKo/tXI9aKw6HiNdcpzhYf3H5PvODggO286da9c/Bs";
 	
 	
 
-	private String orgCode = "000005"; // 机构号
+	private String orgCode = "机构号"; // 机构号
 
 	public void send() {
-		String url = "http://";
+		String url = "";
 
-		
 		SimpleDateFormat sf = new SimpleDateFormat ("yyyyMMddHHmmss");
 		String sendTime = sf.format(new Date());
 	    String orderid = sendTime + String.format("%06d", DBOperation.getSeqNo());
-	    
 		
 		Map<String, String> map = new TreeMap<String, String>();
 		map.put("orgId", orgCode);
@@ -69,14 +67,56 @@ public class TecrwinService {
 		map.put("amount", "2000");
 		map.put("tranTp", "0");
 		map.put("orgOrderNo", orderid);
-//		map.put("notifyUrl","211.103.172.38");
+//		map.put("notifyUrl","http://www.baidu.com");
 		
 		String result = post(url,sendStr(map),null);
 
 	}
-
 	
-
+	
+	/**
+	 *   注册接口
+	 */
+	public void regist(){
+		String url = "";
+		Map<String,String> map = new TreeMap<>();
+		map.put("pmsBankNo", "102100000021"); //必填，12位联行号
+		map.put("certNo", "230828199110140930");//必填，证件号
+		map.put("mobile", "13159949876"); // 必填，结算卡绑定的11位手机号码
+		map.put("password", "admin"); //必填，商户密码
+		map.put("cardNo", "6212260200069864706"); //必填，银行卡号
+		map.put("orgId", "000005"); //必填，6为平台机构号
+		map.put("realName", "周芳禹"); //必填，结算卡对应的真实姓名
+		map.put("account", "13159949876"); // 必填，11位手机号
+		map.put("mchntName", "测试商户"); //必填，商户名称
+		
+		String result = post(url,sendStr(map),null);
+		
+		
+	}
+	
+	
+	/**
+	 *  固定码结果
+	 */
+	public void oneqrpay(){
+		String url = "";
+		
+		SimpleDateFormat sf = new SimpleDateFormat ("yyyyMMddHHmmss");
+		String sendTime = sf.format(new Date());
+	    String orderid = sendTime + String.format("%06d", DBOperation.getSeqNo());
+		
+		Map<String,String> map = new TreeMap<>();
+		map.put("account", "13159949876");
+		map.put("source", "0");
+		map.put("orgOrderNo", orderid);
+		map.put("tranTp", "0");
+		map.put("amount", "2000");
+		map.put("orgId", orgCode);
+		map.put("settleAmt", "100");
+		
+		String result = post(url,sendStr(map),"1");
+	}
 	
 	
 	
@@ -138,9 +178,8 @@ public class TecrwinService {
 					  
 				    formparams.add(new BasicNameValuePair(entry.getKey(), entry.getValue())); 
 				}  
-			    UrlEncodedFormEntity uefEntity;
 				try {
-					uefEntity = new UrlEncodedFormEntity(formparams, "UTF-8");
+					UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(formparams, "UTF-8");
 					httppost.setEntity(uefEntity);
 				} catch (UnsupportedEncodingException e) {
 					System.out.println(e.getMessage());
@@ -273,6 +312,15 @@ public class TecrwinService {
 
 	public static void main(String[] args) throws Exception {
 		TecrwinService tecrwin = new TecrwinService();
-
+//		tecrwin.regist();
+		tecrwin.send();
+//		tecrwin.oneqrpay();
+		
+		
+//		String data = "amount=2&orgId=000005&source=0&tranTp=0";
+//		String sign = tecrwin.sign(data.getBytes(), PRIVATE_KEY);
+//		boolean flag = tecrwin.verify(data.getBytes(), PUBLIC_KEY, sign);
+//		System.out.println(flag);
+		
 	}
 }
