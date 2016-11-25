@@ -9,24 +9,22 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 public class Utils {
 
 	public static String getBASE64(byte[] s) {
 		if (s == null)
 			return null;
-		return (new BASE64Encoder()).encode(s);
+//		return (new BASE64Encoder()).encode(s);
+		return Base64.getEncoder().encodeToString(s);
 	}
 
 	// 将 BASE64 编码的字符串 s 进行解码
 	public static byte[] getFromBASE64(String s) {
 		if (s == null)
 			return null;
-		BASE64Decoder decoder = new BASE64Decoder();
 		try {
-			byte[] b = decoder.decodeBuffer(s);
+			byte[] b = Base64.getDecoder().decode(s);
 			return b;
 		} catch (Exception e) {
 			return null;
@@ -49,7 +47,7 @@ public class Utils {
 		return bcd;
 	}
 
-	private static byte[] ASCII_To_BCD(byte[] ascii, int asc_len) {
+	public static byte[] ASCII_To_BCD(byte[] ascii, int asc_len) {
 		byte[] bcd = new byte[asc_len / 2];
 		int j = 0;
 		for (int i = 0; i < (asc_len + 1) / 2; i++) {
@@ -158,7 +156,6 @@ public class Utils {
 				map.putAll(hashMap);
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return map;
@@ -245,7 +242,6 @@ public class Utils {
 
 	public static ArrayList<String> jieXi(byte[] bytes, boolean b)
 			throws UnsupportedEncodingException {
-		// TODO Auto-generated method stub
 		String s = "";
 		ArrayList<String> fields = new ArrayList<String>();
 		int len = 0;
