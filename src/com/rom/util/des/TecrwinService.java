@@ -63,7 +63,7 @@ public class TecrwinService {
 		map.put("orgId", orgCode);
 		map.put("source", "0");
 		map.put("settleAmt", "100");
-		map.put("account", "13159949876");
+		map.put("account", "");
 		map.put("amount", "2000");
 		map.put("tranTp", "0");
 		map.put("orgOrderNo", orderid);
@@ -80,7 +80,7 @@ public class TecrwinService {
 	public void regist(){
 		String url = "";
 		Map<String,String> map = new TreeMap<>();
-		map.put("pmsBankNo", "102100000021"); //必填，12位联行号
+		map.put("pmsBankNo", ""); //必填，12位联行号
 		map.put("certNo", "");//必填，证件号
 		map.put("mobile", ""); // 必填，结算卡绑定的11位手机号码
 		map.put("password", "admin"); //必填，商户密码
@@ -107,7 +107,7 @@ public class TecrwinService {
 	    String orderid = sendTime + String.format("%06d", DBOperation.getSeqNo());
 		
 		Map<String,String> map = new TreeMap<>();
-		map.put("account", "13159949876");
+		map.put("account", "");
 		map.put("source", "0");
 		map.put("orgOrderNo", orderid);
 		map.put("tranTp", "0");
