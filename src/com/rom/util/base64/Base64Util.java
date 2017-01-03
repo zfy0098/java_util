@@ -1,6 +1,8 @@
 package com.rom.util.base64;
 
-import java.util.Base64;
+import org.apache.commons.codec.binary.Base64;
+
+
 
 
 
@@ -20,8 +22,9 @@ public class Base64Util {
      * @return          
      * @throws Exception          
      */              
-    public static byte[] decryptBASE64(String key) throws Exception {               
-        return Base64.getDecoder().decode(key);              
+    public static byte[] decryptBASE64(String key) throws Exception {   
+    	
+        return Base64.decodeBase64(key.getBytes());     
     }               
                   
     /**         
@@ -30,7 +33,7 @@ public class Base64Util {
      * @return          
      * @throws Exception          
      */              
-    public static String encryptBASE64(byte[] key) throws Exception {               
-        return Base64.getEncoder().encodeToString(key);               
+    public static String encryptBASE64(byte[] key) throws Exception {   
+    	return new String(Base64.encodeBase64(key));
     }       
 }
