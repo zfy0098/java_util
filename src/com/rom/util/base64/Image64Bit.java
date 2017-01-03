@@ -68,4 +68,28 @@ public class Image64Bit {
 			return false;
 		}
 	}
+	
+	
+	/**
+	 * // 将图片文件转化为字节数组字符串，并对其进行Base64编码处理
+	 * @param imageUrl
+	 * @return
+	 */
+	public static String encodeImgageToBase64(URL imageUrl) {
+		ByteArrayOutputStream outputStream = null;
+		try {
+			BufferedImage bufferedImage = ImageIO.read(imageUrl);
+			outputStream = new ByteArrayOutputStream();
+			ImageIO.write(bufferedImage, "jpg", outputStream);
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		// 对字节数组Base64编码
+		// BASE64Encoder encoder = new BASE64Encoder();
+		// encoder.encode(outputStream.toByteArray());// 返回Base64编码过的字节数组字符串
+		return Base64.getEncoder().encodeToString(outputStream.toByteArray());
+	}
+	
 }
