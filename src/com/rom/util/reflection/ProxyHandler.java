@@ -1,4 +1,4 @@
-package com.reflect;
+package com.rom.util.reflection;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

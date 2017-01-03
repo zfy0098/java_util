@@ -49,7 +49,10 @@ import org.apache.http.util.EntityUtils;
 
 public class HttpClientTest { 
    
-	
+	public static void main(String[] args) {
+		HttpClientTest test = new HttpClientTest();
+		test.postForm();
+	}
     /**
      * HttpClient连接SSL
      */ 
@@ -115,7 +118,7 @@ public class HttpClientTest {
         HttpClient httpclient = new DefaultHttpClient(); 
         // 创建httppost 
         HttpPost httppost = new HttpPost( 
-                "http://localhost:8080/myDemo/Ajax/serivceJ.action"); 
+                "http://localhost:8080/test/test.html"); 
         // 创建参数队列 
         List<NameValuePair> formparams = new ArrayList<NameValuePair>(); 
         formparams.add(new BasicNameValuePair("username", "admin")); 

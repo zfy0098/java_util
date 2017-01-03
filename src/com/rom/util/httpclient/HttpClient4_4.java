@@ -1,21 +1,34 @@
 package com.rom.util.httpclient;
 
-import java.io.File;  
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONObject;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.config.RequestConfig;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 /**
@@ -122,20 +135,16 @@ public class HttpClient4_4 {
 			System.out.println("content:"+ result.toString());
 			return result.toString();
 		} catch (ClientProtocolException e) {
-			logtool.error(e.getMessage());
 			System.out.println(e.getMessage());
 		} catch (IllegalStateException e) {
-			logtool.error(e.getMessage());
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
-			logtool.error(e.getMessage());
 		} finally {
 			try {
 				response.close();
 				httpClient.close();
 			} catch (IOException e) {
-				logtool.error(e.getMessage());
 			}
 		}
 		return null;
@@ -177,10 +186,14 @@ public class HttpClient4_4 {
 				}
 			} else {
 				
-				StringEntity rsqentity = new StringEntity(JSONObject.fromObject(params).toString(), "utf-8");
-				rsqentity.setContentEncoding("UTF-8");
-				rsqentity.setContentType("application/json");
-				httppost.setEntity(rsqentity);
+				try {
+					StringEntity rsqentity = new StringEntity(JSONObject.fromObject(params).toString(), "utf-8");
+					rsqentity.setContentEncoding("UTF-8");
+					rsqentity.setContentType("application/json");
+					httppost.setEntity(rsqentity);
+				} catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 		

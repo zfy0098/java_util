@@ -1,5 +1,4 @@
-package com.sunshine.fusys.util;
-
+package com.rom.util.ValidateCode;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;

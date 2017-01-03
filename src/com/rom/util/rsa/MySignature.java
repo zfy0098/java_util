@@ -39,7 +39,7 @@ public class MySignature {
 		 */
 		byte[] encodedText = MyRSA.RSAEncode(publicKey2, PLAIN_TEXT.getBytes());
 		
-		System.out.println(Base64.encodeBase64String(encodedText));
+		System.out.println(new String(Base64.encodeBase64(encodedText)));
 		
 		byte[] signature = sign(privateKey1, PLAIN_TEXT.getBytes());
 

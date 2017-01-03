@@ -1,6 +1,6 @@
-package com.service;
+package com.rom.util.des;
 
-import java.io.BufferedReader;
+import java.io.BufferedReader;  
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,6 +13,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -32,15 +33,10 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
-import com.db.service.DBOperation;
-import com.tool.LogTool;
 
 public class TecrwinService {
 
-	LogTool logtool = new LogTool();
 	
 	public static final String KEY_ALGORTHM = "RSA";//
 	public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
@@ -57,7 +53,7 @@ public class TecrwinService {
 
 		SimpleDateFormat sf = new SimpleDateFormat ("yyyyMMddHHmmss");
 		String sendTime = sf.format(new Date());
-	    String orderid = sendTime + String.format("%06d", DBOperation.getSeqNo());
+	    String orderid = sendTime + String.format("%06d", "订单号");
 		
 		Map<String, String> map = new TreeMap<String, String>();
 		map.put("orgId", orgCode);
@@ -79,7 +75,7 @@ public class TecrwinService {
 	 */
 	public void regist(){
 		String url = "";
-		Map<String,String> map = new TreeMap<>();
+		Map<String,String> map = new TreeMap<String,String>();
 		map.put("pmsBankNo", ""); //必填，12位联行号
 		map.put("certNo", "");//必填，证件号
 		map.put("mobile", ""); // 必填，结算卡绑定的11位手机号码
@@ -104,9 +100,9 @@ public class TecrwinService {
 		
 		SimpleDateFormat sf = new SimpleDateFormat ("yyyyMMddHHmmss");
 		String sendTime = sf.format(new Date());
-	    String orderid = sendTime + String.format("%06d", DBOperation.getSeqNo());
+	    String orderid = sendTime + String.format("%06d", "订单号");
 		
-		Map<String,String> map = new TreeMap<>();
+		Map<String,String> map = new TreeMap<String,String>();
 		map.put("account", "");
 		map.put("source", "0");
 		map.put("orgOrderNo", orderid);
@@ -183,17 +179,21 @@ public class TecrwinService {
 					httppost.setEntity(uefEntity);
 				} catch (UnsupportedEncodingException e) {
 					System.out.println(e.getMessage());
-					logtool.error(e.getMessage());
 					return "";
 				} 
 			}
 		}else{
-			System.out.println(JSONObject.fromObject(resultMap).toString());
-			
-			StringEntity rsqentity = new StringEntity(JSONObject.fromObject(resultMap).toString(), "utf-8");
-			rsqentity.setContentEncoding("UTF-8");
-			rsqentity.setContentType("application/json");
-			httppost.setEntity(rsqentity);
+			try {
+				System.out.println(JSONObject.fromObject(resultMap).toString());
+				
+				StringEntity rsqentity = new StringEntity(JSONObject.fromObject(resultMap).toString(), "utf-8");
+				rsqentity.setContentEncoding("UTF-8");
+				rsqentity.setContentType("application/json");
+				httppost.setEntity(rsqentity);
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				return "";
+			}
 			
 		}
 		
@@ -216,20 +216,16 @@ public class TecrwinService {
 			System.out.println("content:"+ result.toString());
 			return result.toString();
 		} catch (ClientProtocolException e) {
-			logtool.error(e.getMessage());
 			System.out.println(e.getMessage());
 		} catch (IllegalStateException e) {
-			logtool.error(e.getMessage());
 			System.out.println(e.getMessage());
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
-			logtool.error(e.getMessage());
 		} finally {
 			try {
 				response.close();
 				httpClient.close();
 			} catch (IOException e) {
-				logtool.error(e.getMessage());
 			}
 		}
 		return null;
@@ -296,7 +292,7 @@ public class TecrwinService {
 	 * @throws Exception
 	 */
 	public static byte[] decryptBASE64(String key) throws Exception {
-		return (new BASE64Decoder()).decodeBuffer(key);
+		return Base64.getDecoder().decode(key);
 	}
 
 	/**
@@ -307,7 +303,7 @@ public class TecrwinService {
 	 * @throws Exception
 	 */
 	public static String encryptBASE64(byte[] key) throws Exception {
-		return (new BASE64Encoder()).encodeBuffer(key);
+		return Base64.getEncoder().encodeToString(key);
 	}
 
 	public static void main(String[] args) throws Exception {

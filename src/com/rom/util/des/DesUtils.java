@@ -91,7 +91,6 @@ public class DesUtils {
    * @throws Exception  
    */
   public DesUtils(String strKey) throws Exception {
-    Security.addProvider(new com.sun.crypto.provider.SunJCE());
     Key key = getKey(strKey.getBytes());
 
     encryptCipher = Cipher.getInstance("DES");

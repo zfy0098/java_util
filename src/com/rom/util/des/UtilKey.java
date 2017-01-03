@@ -1,4 +1,4 @@
-package com.tool;
+package com.rom.util.des;
 
 import java.security.Key;
 import java.security.Security;
@@ -48,7 +48,6 @@ public class UtilKey {
 	 * @throws Exception
 	 */
 	private void init() throws Exception {
-		Security.addProvider(new com.sun.crypto.provider.SunJCE());
 		Key key = getKey(strDefaultKey.getBytes());
 		encryptCipher = Cipher.getInstance("DES");
 		encryptCipher.init(Cipher.ENCRYPT_MODE, key);

@@ -1,13 +1,18 @@
 package com.rom.util.base64;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Base64;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import javax.imageio.ImageIO;
+
 
 
 /**
@@ -42,17 +47,18 @@ public class Image64Bit {
 		}
 
 		// 对字节数组Base64编码
-		BASE64Encoder encoder = new BASE64Encoder();
-		return encoder.encode(data);// 返回Base64编码过的字节数组字符串
+//		BASE64Encoder encoder = new BASE64Encoder();
+//		return encoder.encode(data);// 返回Base64编码过的字节数组字符串
+		
+		return Base64.getEncoder().encodeToString(data);
 	}
 
 	public static boolean GenerateImage(String imgStr, String imgFilePath) {// 对字节数组字符串进行Base64解码并生成图片
 		if (imgStr == null) // 图像数据为空
 			return false;
-		BASE64Decoder decoder = new BASE64Decoder();
 		try {
 			// Base64解码
-			byte[] bytes = decoder.decodeBuffer(imgStr);
+			byte[] bytes = Base64.getDecoder().decode(imgStr);
 			for (int i = 0; i < bytes.length; ++i) {
 				if (bytes[i] < 0) {// 调整异常数据
 					bytes[i] += 256;

@@ -1,6 +1,6 @@
 package com.rom.util.rsa;
 
-import java.security.InvalidKeyException;
+import java.security.InvalidKeyException; 
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -43,9 +43,8 @@ public class MyRSA {
 
 		byte[] encodedText = RSAEncode(publicKey, PLAIN_TEXT.getBytes());
 		System.out.println(new String(encodedText));
-		System.out.println("RSA encoded: "
-				+ Base64.encodeBase64String(encodedText));
-
+		System.out.println("RSA encoded: " + new String(Base64.encodeBase64(encodedText)));
+		
 		// 解密
 		PrivateKey privateKey = restorePrivateKey(keyMap.get(PRIVATE_KEY));
 		System.out

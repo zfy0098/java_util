@@ -1,4 +1,4 @@
-package com.util;
+package com.rom.util.redis;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

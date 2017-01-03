@@ -1,6 +1,6 @@
-package com.util;
+package com.rom.util.redis;
 
-import java.util.HashMap;
+import java.util.HashMap; 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -73,6 +73,6 @@ public class RedisUtil {
 		for (String key : keylist) {
 			System.out.println("redis set key is " + key);
 		}
-		jedis.close();
+		
 	}
 }

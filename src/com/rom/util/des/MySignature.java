@@ -1,6 +1,6 @@
-package com.encryption;
+package com.rom.util.des;
 
-import java.security.InvalidKeyException;
+import java.security.InvalidKeyException; 
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -8,7 +8,8 @@ import java.security.Signature;
 import java.security.SignatureException;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Base64;
+
+import com.rom.util.rsa.MyRSA;
 
 /**
  * RSA数字签名，借用MyRSA中的算法，不再重复 数字签名遵循“私钥签名，公钥验签”原则，因为私钥是个人身份认证
@@ -39,7 +40,7 @@ public class MySignature {
 		 */
 		byte[] encodedText = MyRSA.RSAEncode(publicKey2, PLAIN_TEXT.getBytes());
 		
-		System.out.println(Base64.encodeBase64String(encodedText));
+		System.out.println(java.util.Base64.getEncoder().encode(encodedText));
 		
 		byte[] signature = sign(privateKey1, PLAIN_TEXT.getBytes());
 

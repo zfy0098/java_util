@@ -3,17 +3,15 @@
 // Decompiler options: packimports(3) fieldsfirst 
 // Source File Name:   DESede.java
 
-package com.encry;
+package com.rom.util.des;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.tool.LoadPro;
-import com.tool.Utils;
 
 public class DESUtil
 {
@@ -87,7 +85,7 @@ public class DESUtil
 		
 		
 		System.out.println("macStr"+macStr);
-		String initKey= LoadPro.loadProperties("config","DBINDEX");
+		String initKey = "2";
 		return mac(macStr,key,initKey);
 	} 
  
@@ -104,7 +102,7 @@ public class DESUtil
 		try {
 			
 			
-			String initKey= LoadPro.loadProperties("jmj",keyIndex);
+			String initKey= "22222222222222222222222222222222";
 			//解析密钥明文
 			String keyde = Utils.bcd2Str(DESUtil.decrypt3(key, initKey));
 			byte[] leftByte=DESUtil.encrypt3(macAsc.substring(0,16), keyde);

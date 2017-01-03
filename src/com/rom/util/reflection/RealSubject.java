@@ -1,4 +1,4 @@
-package com.reflect;
+package com.rom.util.reflection;
 
 public class RealSubject implements Subject{
 

@@ -1,5 +1,5 @@
-package com.rom.util.cache;
-import java.net.URL; 
+package com.rom.util.ehcache;
+import java.net.URL;   
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;

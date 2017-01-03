@@ -1,4 +1,4 @@
-package com.qrcode;
+package com.rom.util.qrcode;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics;
