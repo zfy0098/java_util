@@ -1,6 +1,6 @@
 package com.rom.util.des;
 
-import java.security.InvalidKeyException; 
+import java.security.InvalidKeyException;  
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -9,6 +9,8 @@ import java.security.SignatureException;
 import java.util.Map;
 
 
+
+import com.lowagie.text.pdf.codec.Base64;
 import com.rom.util.rsa.MyRSA;
 
 /**
@@ -40,7 +42,7 @@ public class MySignature {
 		 */
 		byte[] encodedText = MyRSA.RSAEncode(publicKey2, PLAIN_TEXT.getBytes());
 		
-		System.out.println(java.util.Base64.getEncoder().encode(encodedText));
+		System.out.println( Base64.encodeBytes(encodedText));
 		
 		byte[] signature = sign(privateKey1, PLAIN_TEXT.getBytes());
 

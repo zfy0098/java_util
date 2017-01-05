@@ -1,12 +1,11 @@
 package com.rom.util.image;
 
-import java.awt.Image;   
+import java.awt.Image;     
 import java.awt.image.BufferedImage;  
 import java.io.File;  
 import java.io.FileOutputStream;  
 import java.io.IOException;  
 import javax.imageio.ImageIO;  
-import com.sun.image.codec.jpeg.JPEGImageEncoder;  
   
 /******************************************************************************* 
  * 缩略图类（通用） 本java类能将jpg、bmp、png、gif图片文件，进行等比或非等比的大小转换。 具体使用方法 

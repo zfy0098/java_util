@@ -1,7 +1,6 @@
 package com.rom.util.email;
 
-import java.io.UnsupportedEncodingException; 
-import java.util.Base64;
+import java.io.UnsupportedEncodingException;  
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Properties;
