@@ -1,6 +1,7 @@
-package com.email;
+package com.rom.util.email;
 
-import java.io.UnsupportedEncodingException;
+import java.io.UnsupportedEncodingException; 
+import java.util.Base64;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
@@ -23,7 +24,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
 
 public class SendMail {
 	public boolean sendMail(MailBean mb) {
@@ -82,7 +82,7 @@ public class SendMail {
 					mbpFile.setDataHandler(new DataHandler(fds));
 					try {
 						mbpFile.setFileName("=?GBK?B?"
-								+ Base64.encode(fds.getName().getBytes("GBK"))
+								+ Base64.getEncoder().encode(fds.getName().getBytes("GBK"))
 								+ "?=");
 					} catch (UnsupportedEncodingException e) {
 						e.printStackTrace();

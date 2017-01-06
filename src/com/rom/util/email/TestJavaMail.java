@@ -1,4 +1,4 @@
-package com.email;
+package com.rom.util.email;
 
 public class TestJavaMail {
 	public static void main(String[] args) {

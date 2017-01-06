@@ -1,4 +1,4 @@
-package com.email;
+package com.rom.util.email;
 
 import java.util.Vector;
 
