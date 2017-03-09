@@ -277,9 +277,7 @@ public class Validation {
 			DateFormat df = new SimpleDateFormat(fromat);
 			return df.parse(value.toString());
 		} catch (Exception ex) {
-			LOGGER.warn(
-					LogUtil.getLogStr("TimeConvertException", "500", value
-							+ ":" + fromat, "", ex.getMessage()), ex);
+			ex.printStackTrace();
 		}
 		return null;
 	}

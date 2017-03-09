@@ -99,7 +99,7 @@ import javax.imageio.ImageIO;
                 tag.getGraphics().drawImage(img.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);  
                 FileOutputStream out = new FileOutputStream(outputDir + outputFileName);  
                 // JPEGImageEncoder可适用于其他图片类型的转换   
-                JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);   
+                JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
                 encoder.encode(tag);   
                 out.close();   
              }   

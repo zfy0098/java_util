@@ -1,4 +1,4 @@
-package com.base64;
+package com.rom.util.image;
 
 
 import java.awt.image.BufferedImage; 
@@ -13,7 +13,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.sun.jersey.core.util.Base64;
+import org.apache.commons.codec.binary.Base64;
+
 
 
 
@@ -51,7 +52,8 @@ public class Image64Bit {
 		// 对字节数组Base64编码
 //		BASE64Encoder encoder = new BASE64Encoder();
 //		encoder.encode(data);// 返回Base64编码过的字节数组字符串
-		return new String(Base64.encode(data));
+//		return new String(Base64.encode(data));
+		return new String(Base64.encodeBase64(data));
 	}
 
 	public static boolean GenerateImage(String imgStr, String imgFilePath) {// 对字节数组字符串进行Base64解码并生成图片
@@ -59,8 +61,8 @@ public class Image64Bit {
 			return false;
 		try {
 			// Base64解码
-			byte[] bytes = Base64.decode(imgStr);
-			for (int i = 0; i < bytes.length; ++i) {
+			byte[] bytes = Base64.decodeBase64(imgStr.getBytes());
+ 			for (int i = 0; i < bytes.length; ++i) {
 				if (bytes[i] < 0) {// 调整异常数据
 					bytes[i] += 256;
 				}
@@ -96,7 +98,7 @@ public class Image64Bit {
 		// 对字节数组Base64编码
 		// BASE64Encoder encoder = new BASE64Encoder();
 		// encoder.encode(outputStream.toByteArray());// 返回Base64编码过的字节数组字符串
-		return new String(Base64.encode(outputStream.toByteArray()));
+		return new String(Base64.encodeBase64(outputStream.toByteArray())); 
 	}
 	
 }

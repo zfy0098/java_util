@@ -1,4 +1,4 @@
-package com;
+package com.rom.util.httpclient;
 
 import java.io.IOException;  
 import java.util.ArrayList;
@@ -84,7 +84,7 @@ public class Test_api_threed {
 					 formparams.add(new BasicNameValuePair("name", name));
 					 post.setEntity(new UrlEncodedFormEntity(formparams, "UTF-8"));
 					
-					post.setConfig(config);
+//					post.setConfig(config);
 					response = httpClient.execute(post);
 					HttpEntity entity = response.getEntity();
 					String content = EntityUtils.toString(entity);

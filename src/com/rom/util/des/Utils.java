@@ -4,10 +4,11 @@ import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.apache.commons.codec.binary.Base64;
 
 
 public class Utils {
@@ -16,7 +17,7 @@ public class Utils {
 		if (s == null)
 			return null;
 //		return (new BASE64Encoder()).encode(s);
-		return Base64.getEncoder().encodeToString(s);
+		return new String(Base64.encodeBase64(s));
 	}
 
 	// 将 BASE64 编码的字符串 s 进行解码
@@ -24,7 +25,7 @@ public class Utils {
 		if (s == null)
 			return null;
 		try {
-			byte[] b = Base64.getDecoder().decode(s);
+			byte[] b = Base64.decodeBase64(s.getBytes()); 
 			return b;
 		} catch (Exception e) {
 			return null;

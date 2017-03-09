@@ -1,4 +1,4 @@
-package com.base64;
+package com.rom.util.image;
 
 import java.awt.image.BufferedImage;  
 import java.io.ByteArrayOutputStream;
@@ -14,7 +14,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
-import com.sun.jersey.core.util.Base64;
+import org.apache.commons.codec.binary.Base64;
+
 
 
 /**
@@ -72,7 +73,7 @@ public class URLImage64Bit {
 		// 对字节数组Base64编码
 		// BASE64Encoder encoder = new BASE64Encoder();
 		// encoder.encode(outputStream.toByteArray());// 返回Base64编码过的字节数组字符串
-		return new String(Base64.encode(outputStream.toByteArray()));
+		return new String(Base64.encodeBase64(outputStream.toByteArray()));
 	}
 	
 	
@@ -119,7 +120,7 @@ public class URLImage64Bit {
 //		BASE64Encoder encoder = new BASE64Encoder();
 //		encoder.encode(data);// 返回Base64编码过的字节数组字符串
 		
-		return new String(Base64.encode(data));
+		return new String(Base64.encodeBase64(data));
 	}
 
 	
@@ -143,7 +144,7 @@ public class URLImage64Bit {
 		// 对字节数组Base64编码
 //		BASE64Encoder encoder = new BASE64Encoder();
 //		encoder.encode(data);// 返回Base64编码过的字节数组字符串
-		return new String(Base64.encode(data));
+		return new String(Base64.encodeBase64(data));
 	}
 
 	/**
@@ -160,7 +161,7 @@ public class URLImage64Bit {
 			return false;
 		try {
 //			byte[] b = decoder.decodeBuffer(imgStr);// Base64解码
-			byte[] b = Base64.decode(imgStr);  // Base64解码
+			byte[] b = Base64.decodeBase64(imgStr.getBytes());  // Base64解码
 			for (int i = 0; i < b.length; ++i) {
 				if (b[i] < 0) {// 调整异常数据
 					b[i] += 256;
