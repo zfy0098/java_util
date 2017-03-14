@@ -31,6 +31,6 @@
                 diskExpiryThreadIntervalSeconds="120"  
                 memoryStoreEvictionPolicy="LRU"  
                 />  
-                                 <cache name="sampleCache2" maxElementsInMemory="10000" eternal="false" timeToLiveSeconds="36000" timeToIdleSeconds="72000" overflowToDisk="true"/>   
+     	<cache name="sampleCache2" maxElementsInMemory="10000" eternal="false" timeToLiveSeconds="36000" timeToIdleSeconds="72000" overflowToDisk="true"/>   
                 
     </ehcache>  
