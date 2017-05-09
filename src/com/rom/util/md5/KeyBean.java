@@ -1,5 +1,6 @@
 package com.rom.util.md5;
 
+import java.lang.reflect.Array;
 
 /*******************************************************************************
  * keyBean 类实现了RSA Data Security, Inc.在提交给IETF 的RFC1321中的keyBean message-digest
@@ -334,15 +335,17 @@ public class KeyBean {
         char[] Digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',
                 'B', 'C', 'D', 'E', 'F' };
         char[] ob = new char[2];
-        ob[0] = Digit[(ib >>> 4) & 0X0F];
+        ob[0] = Digit[(ib >>> 6) & 0X0F];
         ob[1] = Digit[ib & 0X0F];
         String s = new String(ob);
         return s;
     }
 
-    /*public static void main(String args[]) {
+    public static void main(String args[]) {
 
         KeyBean m = new KeyBean();
+        
+        
         if (Array.getLength(args) == 0) { // 如果没有参数，执行标准的Test Suite
             System.out.println("keyBean Test suite:");
             System.out.println("keyBean(\"):" + m.getkeyBeanofStr(""));
@@ -357,8 +360,7 @@ public class KeyBean {
                             + m
                                     .getkeyBeanofStr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"));
         } else
-            System.out.println("keyBean(" + args[0] + ")="
-                    + m.getkeyBeanofStr(args[0]));
+            System.out.println("keyBean(" + args[0] + ")="  + m.getkeyBeanofStr(args[0]));
 
-    }*/
+    }
 }
