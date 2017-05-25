@@ -15,7 +15,7 @@ import org.apache.commons.httpclient.params.HttpMethodParams;
 
 /**
  * 静态页面引擎技术（突乱了乱码问题UTF-8）
- * @author 吴彦文
+ * @author 
  *
  */
 public class HtmlGenerator  {
@@ -104,8 +104,8 @@ public class HtmlGenerator  {
 	//测试方法
 	public static void main(String[] args){
 		HtmlGenerator h = new HtmlGenerator("http://m.itools.cn");
-		h.createHtmlPage("http://m.itools.cn/","F:/a.html");
-		System.out.println("静态页面已经生成到f:/a.html");
+		h.createHtmlPage("http://m.itools.cn/","E:/a.html");
+		System.out.println("静态页面已经生成到e:/a.html");
 		//String webappname = "http://m.itools.cn";
 		//System.out.println("src=\"/");
 		//System.out.println("src=\""+webappname+"/");
