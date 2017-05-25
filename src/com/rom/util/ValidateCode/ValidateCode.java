@@ -124,10 +124,4 @@ public class ValidateCode {
 		}
 
 	}
-
-	public static void main(String[] args) {
-		ValidateCodeServlet s = new ValidateCodeServlet();
-		s.init();
-		s.service();
-	}
 }
