@@ -26,12 +26,10 @@ public class ImageHelper {
 	/***
 	 * 按指定的比例缩放图片
 	 * 
-	 * @param sourceImagePath
-	 *            源地址
-	 * @param destinationPath
-	 *            改变大小后图片的地址
-	 * @param scale
-	 *            缩放比例，如1.2
+	 * @param sourceImagePath  	源地址
+	 * @param destinationPath  	改变大小后图片的地址
+	 * @param scale  			缩放比例，如1.2
+	 * @param format  			图格式例如jpg
 	 */
 	public static void scaleImage(String sourceImagePath, String destinationPath, double scale, String format) {
 
@@ -110,12 +108,9 @@ public class ImageHelper {
 
 	/***
 	 * 
-	 * @param bufferedImage
-	 *            要缩放的图片对象
-	 * @param width_scale
-	 *            要缩放到的宽度
-	 * @param height_scale
-	 *            要缩放到的高度
+	 * @param bufferedImage 要缩放的图片对象
+	 * @param width_scale  要缩放到的宽度
+	 * @param height_scale  要缩放到的高度
 	 * @return 一个集合，第一个元素为宽度，第二个元素为高度
 	 */
 	private static ArrayList<Integer> getAutoWidthAndHeight(BufferedImage bufferedImage, int width_scale,
