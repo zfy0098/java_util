@@ -18,6 +18,74 @@ public class DESUtil {
 	
 	private static final String Algorithm = "DESede";
 
+	/**
+	 * 5.1 MAC加密算法
+			加密方式
+				采用双倍长密钥对数据进行加密
+			加密算法
+			将报文中所有请求数据按照字段名的 ascii 码从小到大排序构成MAC ELEMEMENT BLOCK （MAB）。
+			b)  对MAB，按每8个字节做异或（不管信息中的字符格式），如果最后不满8个字节，则添加“0X00”。
+			示例	：
+			MAB = M1 M2 M3 M4
+			其中：	
+			M1 = MS11 MS12 MS13 MS14 MS15 MS16 MS17 MS18
+			M2 = MS21 MS22 MS23 MS24 MS25 MS26 MS27 MS28
+			M3 = MS31 MS32 MS33 MS34 MS35 MS36 MS37 MS38
+			M4 = MS41 MS42 MS43 MS44 MS45 MS46 MS47 MS48
+			
+			按如下规则进行异或运算：
+						MS11 MS12 MS13 MS14 MS15 MS16 MS17 MS18
+			XOR）			MS21 MS22 MS23 MS24 MS25 MS26 MS27 MS28
+			---------------------------------------------------
+			TEMP BLOCK1 =	TM11 TM12 TM13 TM14 TM15 TM16 TM17 TM18
+			
+			然后，进行下一步的运算：
+			TM11 TM12 TM13 TM14 TM15 TM16 TM17 TM18
+			XOR）			MS31 MS32 MS33 MS34 MS35 MS36 MS37 MS38
+			---------------------------------------------------
+			TEMP BLOCK2 =	TM21 TM22 TM23 TM24 TM25 TM26 TM27 TM28
+			
+			再进行下一步的运算：
+			TM21 TM22 TM23 TM24 TM25 TM26 TM27 TM28
+			XOR）			MS41 MS42 MS43 MS44 MS45 MS46 MS47 MS48
+			---------------------------------------------------
+			RESULT BLOCK =	TM31 TM32 TM33 TM34 TM35 TM36 TM37 TM38
+					
+			c)  将异或运算后的最后8个字节（RESULT BLOCK）转换成16 个HEXDECIMAL：
+			RESULT BLOCK = TM31 TM32 TM33 TM34 TM35 TM36 TM37 TM38
+				         = TM311 TM312 TM321 TM322 TM331 TM332 TM341 TM342 ||
+					       TM351 TM352 TM361 TM362 TM371 TM372 TM381 TM382
+			
+			d)  取前8 个字节用MAK加密：
+			ENC BLOCK1 = eMAK（TM311 TM312 TM321 TM322 TM331 TM332 TM341 TM342）
+						= EN(1)1 EN(1)2 EN(1)3 EN(14) EN(1)5 EN(1)6 EN(1)7 EN(1)8
+			
+			e)  将加密后的结果与后8 个字节异或：
+			EN(1)1  EN(1)2  EN(1)3  EN(14)  EN(1)5  EN(1)6  EN(1)7  EN(1)8
+			XOR）	TM351 TM352 TM361 TM362 TM371 TM372 TM381 TM382
+			------------------------------------------------------------
+			TEMP BLOCK=	TE11  TE12  TE13  TE14  TE15  TE16  TE17  TE18
+			
+			f)  用异或的结果TEMP BLOCK 再进行一次单倍长密钥算法运算。
+			ENC BLOCK2 = eMAK（TE11 TE12 TE13 TE14 TE15 TE16 TE17 TE18）
+					= EN(2)1 EN(2)2 EN(2)3 EN(2)4 EN(2)5 EN(2)6 EN(2)7 EN(2)8
+			
+			g)  将运算后的结果（ENC BLOCK2）转换成16 个HEXDECIMAL：
+			ENC BLOCK2 = EN(2)1 EN(2)2 EN(2)3 EN(2)4 EN(2)5 EN(2)6 EN(2)7 EN(2)8
+			= EM211 EM212 EM221 EM222 EM231 EM232 EM241 EM242 ||
+						 EM251 EM252 EM261 EM262 EM271 EM272 EM281 EM282
+			示例	：
+			ENC RESULT= %H84, %H56, %HB1, %HCD, %H5A, %H3F, %H84, %H84
+			转换成16 个HEXDECIMAL:
+			“8456B1CD5A3F8484”
+			h)  取前8个字节作为MAC值。
+				取”8456B1CD”为MAC值。
+
+	 * @param data
+	 * @param keyStr
+	 * @return
+	 * @throws Exception
+	 */
 
     public static byte[] encrypt3(String data, String keyStr) throws Exception {
     	byte[] keyByte = ASCII_To_BCD(keyStr.getBytes());
