@@ -48,7 +48,7 @@ public class RedisUtil {
 		map.put("tj", "天津");
 		jedis.hmset("redisMap", map);
 		
-		//  设置key有效期
+		//  设置key有效期  时间 秒
 		jedis.expire("sorted-set", 20);
 		
 		//  获取key 的有效期
