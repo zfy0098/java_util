@@ -87,5 +87,6 @@ public class PoiCreateExcel {
 	    FileOutputStream os = new FileOutputStream("D:\\workbook.xls");  
 	    wb.write(os);  
 	    os.close();  
+	    wb.close();
 	}  
 }
