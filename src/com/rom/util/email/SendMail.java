@@ -74,7 +74,8 @@ public class SendMail {
 
 			Multipart mp = new MimeMultipart();
 			MimeBodyPart mbpContent = new MimeBodyPart();
-			mbpContent.setText(content);
+//			mbpContent.setText(content);  // 普通文本
+			mbpContent.setContent(content , "text/html; charset=utf-8");  // 发送html格式邮件
 			mp.addBodyPart(mbpContent);
 
 			/* 往邮件中添加附件 */
