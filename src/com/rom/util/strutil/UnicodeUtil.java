@@ -4,9 +4,7 @@ public class UnicodeUtil {
 	   
     public static void main(String[] args) {  
            
-        String str = "多米付";  
-//        String str = "假装这里有Emoji表情";  
-//        unicode(str);  
+        String str = "哆米付";  
         System.out.println("decodeUnicode:"+decodeUnicode(unicode(str)));  
         System.out.println("decodeUnicode2:"+decodeUnicode2(unicode(str)));  
     }  
