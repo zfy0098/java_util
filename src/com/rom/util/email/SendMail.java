@@ -101,7 +101,7 @@ public class SendMail {
 			msg.setContent(mp);
 			msg.setSentDate(new Date());
 			Transport.send(msg);
-
+			
 		} catch (MessagingException me) {
 			me.printStackTrace();
 			return false;

@@ -9,11 +9,11 @@ public class TestJavaMail {
 		mb.setPassword("siyanlv3@"); // 设置发件人邮箱的密码，需将*号改成正确的密码
 		mb.setFrom("zhoufangyu@ronghuijinfubj.com"); // 设置发件人的邮箱
 		
-		mb.setTo("877477776@qq.com");  // 设置收件人的邮箱
-		mb.setTo("9921297@qq.com");
+		mb.setTo("11@qq.com");  // 设置收件人的邮箱
+//		mb.setTo("9921297@qq.com");
 		
-		mb.setCopyColumn("ronghui@ronghuijinfubj.com");	//  设置抄送人
-		mb.setCopyColumn("jishu@ronghuijinfubj.com");
+//		mb.setCopyColumn("ronghui@ronghuijinfubj.com");	//  设置抄送人
+//		mb.setCopyColumn("jishu@ronghuijinfubj.com");
 		
 		mb.setSubject("测试邮件"); // 设置邮件的主题
 		mb.setContent("本邮件中包含三个附件，请检查！ 其实没有邮件"); // 设置邮件的正文
