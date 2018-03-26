@@ -187,7 +187,7 @@ public class ExcelReader {
 	}
 	
 	public static void main(String[] args) {
-		ExcelReader excelReader = new ExcelReader("d:/workbook.xls");
+		ExcelReader excelReader = new ExcelReader("d:/3333.csv");
 		List<String[]> list = excelReader.getAllData(0);
 		for (int i = 0; i < list.size(); i++) {
 			String[] string = list.get(i);
