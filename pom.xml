@@ -6,10 +6,7 @@
     <packaging>jar</packaging>
     <version>1.0</version>
 
-
     <modelVersion>4.0.0</modelVersion>
-
-
     <name>plantasks</name>
     <url>http://maven.apache.org</url>
 
@@ -17,7 +14,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
-
     </properties>
 
 
@@ -165,22 +161,6 @@
                             jar-with-dependencies
                         </descriptorRef>
                     </descriptorRefs>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.0</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showWarnings>true</showWarnings>
-                    <compilerArguments>
-                        <verbose />
-                        <bootclasspath>${java.home}/lib/rt.jar${path.separator}${java.home}/lib/jce.jar
-                        </bootclasspath>
-                    </compilerArguments>
                 </configuration>
             </plugin>
         </plugins>

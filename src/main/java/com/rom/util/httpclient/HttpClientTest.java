@@ -117,8 +117,7 @@ public class HttpClientTest {
         // 创建默认的httpClient实例. 
         HttpClient httpclient = new DefaultHttpClient(); 
         // 创建httppost 
-        HttpPost httppost = new HttpPost( 
-                "http://localhost:8080/test/test.html"); 
+        HttpPost httppost = new HttpPost("http://localhost:8080/test/test.html");
         // 创建参数队列 
         List<NameValuePair> formparams = new ArrayList<NameValuePair>(); 
         formparams.add(new BasicNameValuePair("username", "admin")); 
@@ -321,7 +320,5 @@ public class HttpClientTest {
             // 关闭连接,释放资源 
             httpclient.getConnectionManager().shutdown(); 
         } 
-     
-    } 
-   
+    }
 }
